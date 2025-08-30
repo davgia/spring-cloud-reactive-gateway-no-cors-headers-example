@@ -1,0 +1,17 @@
+services:
+  gateway:
+    image: test-cors-gateway
+    container_name: gateway
+    ports:
+      - "8081:8081"
+    volumes:
+     - ./gateway.yml:/app/application.yml
+  
+  frontend:
+    image: test-cors-frontend
+    container_name: frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend.js:/app/config.js
+      - ./server_block.conf:/opt/bitnami/nginx/conf/server_blocks/custom.conf:ro
