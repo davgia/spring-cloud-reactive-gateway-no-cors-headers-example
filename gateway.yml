@@ -9,3 +9,10 @@ spring:
                 allowedOrigins: "http://host.docker.internal:8080"
                 allowedMethods: "*"
                 allowedHeaders: "*"
+
+logging:
+  level:
+    com.example: TRACE
+    org.springframework.web.cors: TRACE
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
