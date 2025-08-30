@@ -7,6 +7,12 @@ services:
     volumes:
      - ./gateway.yml:/app/application.yml
   
+  backend:
+    image: test-cors-backend
+    container_name: backend
+    ports:
+      - "8082:8082"
+
   frontend:
     image: test-cors-frontend
     container_name: frontend

@@ -9,20 +9,38 @@
     </style>
     <script src="config.js"></script>
     <script>
-        function testCors() {
-            fetch(config.gatewayUrl + "/actuator/health")
+        function testGet() {
+            return fetch(config.gatewayUrl + "/hello")
             .then(i => i.json())
             .then(i => {
-                document.getElementById("result").innerHTML = "SUCCESS: " + new String(i);
+                document.getElementById("result-get").innerHTML = "SUCCESS (GET): " + JSON.stringify(i);
             })
             .catch(e => {
-                document.getElementById("result").innerHTML = "FAILURE: " + new String(e);
+                document.getElementById("result-get").innerHTML = "FAILURE (GET): " + JSON.stringify(e);
             });
+        }
+
+        function testPost() {
+            return fetch(config.gatewayUrl + "/hello", {
+                method: "POST"
+            })
+            .then(i => i.json())
+            .then(i => {
+                document.getElementById("result-post").innerHTML = "SUCCESS (POST): " + JSON.stringify(i);
+            })
+            .catch(e => {
+                document.getElementById("result-post").innerHTML = "FAILURE (POST): " + JSON.stringify(e);
+            });
+        }
+
+        function testRequests() {
+            return testGet().then(() => testPost());
         }
     </script>
 </head>
-<body onload="testCors();">
+<body onload="testRequests();">
     <h1>CORS test</h1>
-    <h2 id="result"></h2>
+    <h2 id="result-get"></h2>
+    <h2 id="result-post"></h2>
 </body>
 </html>
