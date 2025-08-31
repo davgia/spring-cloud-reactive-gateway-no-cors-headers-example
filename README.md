@@ -1,6 +1,6 @@
-# Spring cloud reactive gateway - no CORS headers
+# Spring cloud reactive gateway - CORS testing ~~no CORS headers~~
 
-Example project to show that the spring cloud reactive gateway does not send CORS headers.
+Example project to show that the spring cloud reactive gateway ~~does not send CORS headers~~ handles CORS correctly.
 
 ## Test
 
@@ -8,9 +8,12 @@ Example project to show that the spring cloud reactive gateway does not send COR
 # build artifacts
 cd gateway
 ./mvnw clean package
-docker build -t test-cors-gateway
+docker build -t test-cors-gateway .
+cd ../backend
+./mvnw clean package
+docker build -t test-cors-backend .
 cd ../frontend
-docker build -t test-cors-frontend
+docker build -t test-cors-frontend .
 cd ..
 
 # deploy artifacts
@@ -19,5 +22,5 @@ docker compose up -d
 # [...]
 
 # test preflight request
-curl -X OPTIONS http://host.docker.internal:8081/ -v -o NUL
+curl -X OPTIONS -H "Origin: http://host.docker.internal:8080" http://host.docker.internal:8081/hello -v -o /dev/null
 ```
