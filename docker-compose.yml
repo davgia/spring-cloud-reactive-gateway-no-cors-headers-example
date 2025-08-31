@@ -20,4 +20,3 @@ services:
       - "8080:8080"
     volumes:
       - ./frontend.js:/app/config.js
-      - ./server_block.conf:/opt/bitnami/nginx/conf/server_blocks/custom.conf:ro

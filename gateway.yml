@@ -7,7 +7,7 @@ spring:
             cors-configurations:
               '[/**]':
                 allowedOrigins: "http://host.docker.internal:8080"
-                allowedMethods: "*"
+                allowedMethods: ["GET", "POST", "OPTIONS"]
                 allowedHeaders: "*"
 
 logging:

@@ -33,8 +33,21 @@
             });
         }
 
+        function testPut() {
+            return fetch(config.gatewayUrl + "/hello", {
+                method: "PUT"
+            })
+            .then(i => i.json())
+            .then(i => {
+                document.getElementById("result-put").innerHTML = "SUCCESS (PUT): " + JSON.stringify(i);
+            })
+            .catch(e => {
+                document.getElementById("result-put").innerHTML = "FAILURE (PUT): " + JSON.stringify(e);
+            });
+        }
+
         function testRequests() {
-            return testGet().then(() => testPost());
+            return testGet().then(() => testPost()).then(() => testPut());
         }
     </script>
 </head>
@@ -42,5 +55,6 @@
     <h1>CORS test</h1>
     <h2 id="result-get"></h2>
     <h2 id="result-post"></h2>
+    <h2 id="result-put"></h2>
 </body>
 </html>

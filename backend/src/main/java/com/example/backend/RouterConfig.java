@@ -44,6 +44,11 @@ public class RouterConfig {
                     final var response = new Response("POST", request.uri().toString());
                     return ServerResponse.ok().bodyValue(response);
                 })
+                .PUT("/hello", request -> {
+                    log.info("PUT request detected");
+                    final var response = new Response("PUT", request.uri().toString());
+                    return ServerResponse.ok().bodyValue(response);
+                })
                 .build();
     }
 }
